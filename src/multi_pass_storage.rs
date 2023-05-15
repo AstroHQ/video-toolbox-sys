@@ -3,7 +3,7 @@ use crate::core_foundation_sys::url::CFURLRef;
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef };
-use crate::coremedia_sys::CMTimeRange;
+use crate::core_media_sys::CMTimeRange;
 
 
 pub type VTMultiPassStorageRef = CFTypeRef;

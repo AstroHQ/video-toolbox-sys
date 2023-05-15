@@ -2,8 +2,8 @@ use crate::libc::{c_void};
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef, Boolean };
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::corevideo_sys::{ CVImageBufferRef, CVPixelBufferRef, };
-use crate::coremedia_sys::{ CMTime, CMVideoFormatDescriptionRef, CMSampleBufferRef, CMFormatDescriptionRef };
+use crate::core_video_sys::{ CVImageBufferRef, CVPixelBufferRef, };
+use crate::core_media_sys::{ CMTime, CMVideoFormatDescriptionRef, CMSampleBufferRef, CMFormatDescriptionRef };
 
 
 pub type VTDecodeInfoFlags = u32;
@@ -41,28 +41,28 @@ pub type VTDecompressionOutputHandler = extern "C" fn(status: OSStatus,
 
 
 // VTDecodeFrameFlags
-// 
+//
 /// With the kVTDecodeFrame_EnableAsynchronousDecompression bit clear,
 /// the video decoder is compelled to emit every frame before it returns.
-/// With the bit set, the decoder may process frames asynchronously, 
+/// With the bit set, the decoder may process frames asynchronously,
 /// but it is not compelled to do so.
 pub const kVTDecodeFrame_EnableAsynchronousDecompression: VTDecodeFrameFlags = 1<<0;
 /// A hint to the decompression session and video decoder that a CVImageBuffer
 /// should not be emitted for this frame.  NULL will be returned instead.
 pub const kVTDecodeFrame_DoNotOutputFrame: VTDecodeFrameFlags = 1<<1;
-/// A hint to the video decoder that it would be OK to use a low-power mode 
+/// A hint to the video decoder that it would be OK to use a low-power mode
 /// that can not decode faster than 1x realtime.
 pub const kVTDecodeFrame_1xRealTimePlayback: VTDecodeFrameFlags = 1<<2;
 /// With the kVTDecodeFrame_EnableTemporalProcessing bit clear,
-/// the video decoder should emit every frame once that frame's 
+/// the video decoder should emit every frame once that frame's
 /// decoding is done -- frames may not be delayed indefinitely.
-/// With the bit set, it is legal for the decoder to delay frames 
-/// indefinitely -- at least until VTDecompressionSessionFinishDelayedFrames 
+/// With the bit set, it is legal for the decoder to delay frames
+/// indefinitely -- at least until VTDecompressionSessionFinishDelayedFrames
 /// or VTDecompressionSessionInvalidate is called.
 pub const kVTDecodeFrame_EnableTemporalProcessing: VTDecodeFrameFlags = 1<<3;
 
 // VTDecodeInfoFlags
-// 
+//
 // Informational status for decoding -- non-error flags
 pub const kVTDecodeInfo_Asynchronous: VTDecodeInfoFlags = 1 << 0;
 pub const kVTDecodeInfo_FrameDropped: VTDecodeInfoFlags = 1 << 1;

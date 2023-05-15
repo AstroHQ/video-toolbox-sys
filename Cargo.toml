@@ -1,6 +1,6 @@
 [package]
-name = "videotoolbox-sys"
-version = "0.0.2"
+name = "video-toolbox-sys"
+version = "0.1.0"
 edition = "2018"
 authors = ["luozijun <luozijun.assistant@gmail.com>"]
 description = "Bindings to VideoToolBox for OS X and iOS"
@@ -13,8 +13,8 @@ documentation = "https://docs.rs/videotoolbox-sys/*/x86_64-apple-darwin/videotoo
 [dependencies]
 libc = "0.2"
 core-foundation-sys = "0.6.2"
-coremedia-sys = "0.0.2"
-corevideo-sys = "0.0.1"
+core-media-sys = "0.1.0"
+core-video-sys = "0.1.0"
 
 [dev-dependencies]
 core-foundation = "0.6"

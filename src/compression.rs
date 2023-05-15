@@ -2,8 +2,8 @@ use crate::libc::{c_void, c_int, int32_t, uint32_t};
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef, Boolean };
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::corevideo_sys::{ CVImageBufferRef, CVPixelBufferPoolRef, };
-use crate::coremedia_sys::{ CMTime, CMSampleBufferRef, CMVideoCodecType, CMItemCount, CMTimeRange, };
+use crate::core_video_sys::{ CVImageBufferRef, CVPixelBufferPoolRef, };
+use crate::core_media_sys::{ CMTime, CMSampleBufferRef, CMVideoCodecType, CMItemCount, CMTimeRange, };
 
 
 pub const kVTUnlimitedFrameDelayCount: c_int = -1;
@@ -23,13 +23,13 @@ pub type VTCompressionOutputHandler = extern "C" fn(status: OSStatus,
                                                     sampleBuffer: CMSampleBufferRef);
 
 // VTEncodeInfoFlags
-// 
-// Informational status for encoding -- non-error flags 
+//
+// Informational status for encoding -- non-error flags
 pub const kVTEncodeInfo_Asynchronous: VTEncodeInfoFlags = 1 << 0;
 pub const kVTEncodeInfo_FrameDropped: VTEncodeInfoFlags = 1 << 1;
 
 // VTCompressionSessionOptionFlags
-// 
+//
 pub const kVTCompressionSessionBeginFinalPass: VTCompressionSessionOptionFlags = 1<<0;
 
 

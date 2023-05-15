@@ -2,7 +2,7 @@ use crate::libc::{c_void, c_float};
 use crate::core_foundation_sys::url::CFURLRef;
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef };
-use crate::coremedia_sys::{ CMItemCount, CMTimeRange, CMSampleBufferRef };
+use crate::core_media_sys::{ CMItemCount, CMTimeRange, CMSampleBufferRef };
 
 
 pub type VTFrameSiloRef = CFTypeRef;

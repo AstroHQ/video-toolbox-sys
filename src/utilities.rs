@@ -4,8 +4,8 @@ use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::base::{ CFTypeRef, OSStatus };
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
 
-use crate::corevideo_sys::CVPixelBufferRef;
-use crate::coremedia_sys::CMVideoCodecType;
+use crate::core_video_sys::CVPixelBufferRef;
+use crate::core_media_sys::CMVideoCodecType;
 
 
 pub type CGImageRef = CFTypeRef;

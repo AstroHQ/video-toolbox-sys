@@ -1,6 +1,6 @@
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef };
-use crate::corevideo_sys::CVPixelBufferRef;
+use crate::core_video_sys::CVPixelBufferRef;
 
 
 pub type VTPixelTransferSessionRef = CFTypeRef;
@@ -8,7 +8,7 @@ pub type VTPixelTransferSessionRef = CFTypeRef;
 
 #[link(name="VideoToolBox", kind="framework")]
 extern {
-    /// Scaling mode for images during transfer between source and destination buffers. 
+    /// Scaling mode for images during transfer between source and destination buffers.
     pub static kVTPixelTransferPropertyKey_ScalingMode: CFStringRef;
     pub static kVTScalingMode_Normal: CFStringRef;
     pub static kVTScalingMode_CropSourceToCleanAperture: CFStringRef;

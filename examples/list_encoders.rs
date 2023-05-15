@@ -1,9 +1,9 @@
 extern crate core_foundation;
-extern crate videotoolbox_sys;
+extern crate video_toolbox_sys;
 
 
 use core_foundation::base::{ TCFType, kCFAllocatorDefault, CFIndexConvertible, };
-use core_foundation::dictionary::{ 
+use core_foundation::dictionary::{
     CFDictionaryRef, CFDictionary,
     CFDictionaryCreate, kCFTypeDictionaryKeyCallBacks,
     kCFTypeDictionaryValueCallBacks,
@@ -11,7 +11,7 @@ use core_foundation::dictionary::{
 use core_foundation::array::{ CFArrayRef, CFArray, CFArrayCreate, };
 use core_foundation::string::CFString;
 
-use videotoolbox_sys::utilities::{
+use video_toolbox_sys::utilities::{
     VTCopyVideoEncoderList,
     kVTVideoEncoderList_CodecType,
     kVTVideoEncoderList_EncoderID,
@@ -52,13 +52,13 @@ unsafe fn run (){
                                                        keys.len().to_CFIndex(),
                                                        &kCFTypeDictionaryKeyCallBacks,
                                                        &kCFTypeDictionaryValueCallBacks);
-    
+
 
     let mut result_ref: CFArrayRef = CFArrayCreate(kCFAllocatorDefault,
                                                    ptr::null_mut(),
                                                    0.to_CFIndex(),
                                                    ptr::null());
-    
+
     let ret_code = VTCopyVideoEncoderList(opts_ref, &mut result_ref);
 
     println!("opts: {:?}", CFDictionary::wrap_under_create_rule(opts_ref));
