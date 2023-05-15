@@ -150,6 +150,9 @@ extern "C" {
         pixelBufferOut: *mut CVPixelBufferRef,
     ) -> OSStatus;
 
+    // Invalidating a Session
+    pub fn VTDecompressionSessionInvalidate(session: VTDecompressionSessionRef);
+
     // Inspecting Sessions
     pub fn VTDecompressionSessionGetTypeID() -> CFTypeID;
     pub fn VTDecompressionSessionCanAcceptFormatDescription(

@@ -1,5 +1,5 @@
 use crate::core_foundation_sys::array::CFArrayRef;
-use crate::core_foundation_sys::base::{CFTypeRef, OSStatus};
+use crate::core_foundation_sys::base::{Boolean, CFTypeRef, OSStatus};
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
 use crate::core_foundation_sys::string::CFStringRef;
 
@@ -39,5 +39,5 @@ extern "C" {
         outEncoderID: *mut CFStringRef,
         outSupportedProperties: *mut CFDictionaryRef,
     ) -> OSStatus;
-
+    pub fn VTIsHardwareDecodeSupported(codecType: CMVideoCodecType) -> Boolean;
 }
