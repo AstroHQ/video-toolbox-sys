@@ -1,26 +1,27 @@
-use crate::libc::{c_void, c_int};
-use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef, Boolean };
-use crate::core_foundation_sys::string::CFStringRef;
+use crate::core_foundation_sys::base::{Boolean, CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_video_sys::{ CVImageBufferRef, CVPixelBufferPoolRef, };
-use crate::core_media_sys::{ CMTime, CMSampleBufferRef, CMVideoCodecType, CMItemCount, CMTimeRange, };
-
+use crate::core_foundation_sys::string::CFStringRef;
+use crate::core_media_sys::{
+    CMItemCount, CMSampleBufferRef, CMTime, CMTimeRange, CMVideoCodecType,
+};
+use crate::core_video_sys::{CVImageBufferRef, CVPixelBufferPoolRef};
+use crate::libc::{c_int, c_void};
 
 pub const kVTUnlimitedFrameDelayCount: c_int = -1;
 
 pub type VTEncodeInfoFlags = u32;
 pub type VTCompressionSessionOptionFlags = u32;
 
-
 pub type VTCompressionSessionRef = CFTypeRef;
-pub type VTCompressionOutputCallback = extern "C" fn(outputCallbackRefCon: *mut c_void,
-                                                     sourceFrameRefCon: *mut c_void,
-                                                     status: OSStatus,
-                                                     infoFlags: VTEncodeInfoFlags,
-                                                     sampleBuffer: CMSampleBufferRef);
-pub type VTCompressionOutputHandler = extern "C" fn(status: OSStatus,
-                                                    infoFlags: VTEncodeInfoFlags,
-                                                    sampleBuffer: CMSampleBufferRef);
+pub type VTCompressionOutputCallback = extern "C" fn(
+    outputCallbackRefCon: *mut c_void,
+    sourceFrameRefCon: *mut c_void,
+    status: OSStatus,
+    infoFlags: VTEncodeInfoFlags,
+    sampleBuffer: CMSampleBufferRef,
+);
+pub type VTCompressionOutputHandler =
+    extern "C" fn(status: OSStatus, infoFlags: VTEncodeInfoFlags, sampleBuffer: CMSampleBufferRef);
 
 // VTEncodeInfoFlags
 //
@@ -30,24 +31,25 @@ pub const kVTEncodeInfo_FrameDropped: VTEncodeInfoFlags = 1 << 1;
 
 // VTCompressionSessionOptionFlags
 //
-pub const kVTCompressionSessionBeginFinalPass: VTCompressionSessionOptionFlags = 1<<0;
+pub const kVTCompressionSessionBeginFinalPass: VTCompressionSessionOptionFlags = 1 << 0;
 
-
-#[link(name="VideoToolBox", kind="framework")]
-extern {
+#[link(name = "VideoToolBox", kind = "framework")]
+extern "C" {
     pub static kVTVideoEncoderSpecification_EncoderID: CFStringRef;
 
     // Creating Sessions
-    pub fn VTCompressionSessionCreate(allocator: CFAllocatorRef,
-                                      width: i32,
-                                      height: i32,
-                                      codecType: CMVideoCodecType,
-                                      encoderSpecification: CFDictionaryRef,
-                                      sourceImageBufferAttributes: CFDictionaryRef,
-                                      compressedDataAllocator: CFAllocatorRef,
-                                      outputCallback: VTCompressionOutputCallback,
-                                      outputCallbackRefCon: *mut c_void,
-                                      compressionSessionOut: VTCompressionSessionRef) -> OSStatus;
+    pub fn VTCompressionSessionCreate(
+        allocator: CFAllocatorRef,
+        width: i32,
+        height: i32,
+        codecType: CMVideoCodecType,
+        encoderSpecification: CFDictionaryRef,
+        sourceImageBufferAttributes: CFDictionaryRef,
+        compressedDataAllocator: CFAllocatorRef,
+        outputCallback: VTCompressionOutputCallback,
+        outputCallbackRefCon: *mut c_void,
+        compressionSessionOut: VTCompressionSessionRef,
+    ) -> OSStatus;
     // Configuring Sessions
     pub static kVTCompressionPropertyKey_NumberOfPendingFrames: CFStringRef;
     pub static kVTCompressionPropertyKey_PixelBufferPoolIsShared: CFStringRef;
@@ -145,40 +147,53 @@ extern {
 
     // Encoding Frames
     pub fn VTCompressionSessionPrepareToEncodeFrames(session: VTCompressionSessionRef) -> OSStatus;
-    pub fn VTCompressionSessionEncodeFrame(session: VTCompressionSessionRef,
-                                           imageBuffer: CVImageBufferRef,
-                                           presentationTimeStamp: CMTime,
-                                           duration: CMTime,
-                                           frameProperties: CFDictionaryRef,
-                                           sourceFrameRefcon: *mut c_void,
-                                           infoFlagsOut: *mut VTEncodeInfoFlags) -> OSStatus;
-    pub fn VTCompressionSessionEncodeFrameWithOutputHandler(session: VTCompressionSessionRef,
-                                                            imageBuffer: CVImageBufferRef,
-                                                            presentationTimeStamp: CMTime,
-                                                            duration: CMTime,
-                                                            frameProperties: CFDictionaryRef,
-                                                            infoFlagsOut: *mut VTEncodeInfoFlags,
-                                                            outputHandler: VTCompressionOutputHandler) -> OSStatus;
-    pub fn VTCompressionSessionCompleteFrames(session: VTCompressionSessionRef,
-                                              completeUntilPresentationTimeStamp: CMTime) -> OSStatus;
-
+    pub fn VTCompressionSessionEncodeFrame(
+        session: VTCompressionSessionRef,
+        imageBuffer: CVImageBufferRef,
+        presentationTimeStamp: CMTime,
+        duration: CMTime,
+        frameProperties: CFDictionaryRef,
+        sourceFrameRefcon: *mut c_void,
+        infoFlagsOut: *mut VTEncodeInfoFlags,
+    ) -> OSStatus;
+    pub fn VTCompressionSessionEncodeFrameWithOutputHandler(
+        session: VTCompressionSessionRef,
+        imageBuffer: CVImageBufferRef,
+        presentationTimeStamp: CMTime,
+        duration: CMTime,
+        frameProperties: CFDictionaryRef,
+        infoFlagsOut: *mut VTEncodeInfoFlags,
+        outputHandler: VTCompressionOutputHandler,
+    ) -> OSStatus;
+    pub fn VTCompressionSessionCompleteFrames(
+        session: VTCompressionSessionRef,
+        completeUntilPresentationTimeStamp: CMTime,
+    ) -> OSStatus;
 
     // Inspecting Sessions
-    pub fn VTCompressionSessionGetPixelBufferPool(session: VTCompressionSessionRef) -> CVPixelBufferPoolRef;
+    pub fn VTCompressionSessionGetPixelBufferPool(
+        session: VTCompressionSessionRef,
+    ) -> CVPixelBufferPoolRef;
     pub fn VTCompressionSessionGetTypeID() -> CFTypeID;
 
     // Performing Multipass Compression
-    pub fn VTCompressionSessionBeginPass(session: VTCompressionSessionRef,
-                                         beginPassFlags: VTCompressionSessionOptionFlags,
-                                         reserved: *mut u32) -> OSStatus;
-    pub fn VTCompressionSessionEndPass(session: VTCompressionSessionRef,
-                                       furtherPassesRequestedOut: *mut Boolean,
-                                       reserved: *mut u32) -> OSStatus;
-    pub fn VTCompressionSessionGetTimeRangesForNextPass(session: VTCompressionSessionRef,
-                                                        timeRangeCountOut: *mut CMItemCount,
-                                                        timeRangeArrayOut: *const CMTimeRange) -> OSStatus;
+    pub fn VTCompressionSessionBeginPass(
+        session: VTCompressionSessionRef,
+        beginPassFlags: VTCompressionSessionOptionFlags,
+        reserved: *mut u32,
+    ) -> OSStatus;
+    pub fn VTCompressionSessionEndPass(
+        session: VTCompressionSessionRef,
+        furtherPassesRequestedOut: *mut Boolean,
+        reserved: *mut u32,
+    ) -> OSStatus;
+    pub fn VTCompressionSessionGetTimeRangesForNextPass(
+        session: VTCompressionSessionRef,
+        timeRangeCountOut: *mut CMItemCount,
+        timeRangeArrayOut: *const CMTimeRange,
+    ) -> OSStatus;
 
     // Ending Sessions
-    pub fn VTCompressionSessionInvalidate(session: VTCompressionSessionRef) -> ();
+    pub fn VTCompressionSessionInvalidate(session: VTCompressionSessionRef);
 
 }

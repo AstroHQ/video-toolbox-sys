@@ -1,13 +1,11 @@
+use crate::core_foundation_sys::base::{CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
 use crate::core_foundation_sys::string::CFStringRef;
-use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef };
 use crate::core_video_sys::CVPixelBufferRef;
-
 
 pub type VTPixelTransferSessionRef = CFTypeRef;
 
-
-#[link(name="VideoToolBox", kind="framework")]
-extern {
+#[link(name = "VideoToolBox", kind = "framework")]
+extern "C" {
     /// Scaling mode for images during transfer between source and destination buffers.
     pub static kVTPixelTransferPropertyKey_ScalingMode: CFStringRef;
     pub static kVTScalingMode_Normal: CFStringRef;
@@ -23,13 +21,16 @@ extern {
     pub static kVTPixelTransferPropertyKey_DestinationICCProfile: CFStringRef;
     pub static kVTPixelTransferPropertyKey_DestinationYCbCrMatrix: CFStringRef;
 
-
-    pub fn VTPixelTransferSessionCreate(allocator: CFAllocatorRef,
-                                        pixelTransferSessionOut: VTPixelTransferSessionRef) -> OSStatus;
-    pub fn VTPixelTransferSessionTransferImage(session: VTPixelTransferSessionRef,
-                                               sourceBuffer: CVPixelBufferRef,
-                                               destinationBuffer: CVPixelBufferRef) -> OSStatus;
+    pub fn VTPixelTransferSessionCreate(
+        allocator: CFAllocatorRef,
+        pixelTransferSessionOut: VTPixelTransferSessionRef,
+    ) -> OSStatus;
+    pub fn VTPixelTransferSessionTransferImage(
+        session: VTPixelTransferSessionRef,
+        sourceBuffer: CVPixelBufferRef,
+        destinationBuffer: CVPixelBufferRef,
+    ) -> OSStatus;
     pub fn VTPixelTransferSessionGetTypeID() -> CFTypeID;
-    pub fn VTPixelTransferSessionInvalidate(session: VTPixelTransferSessionRef) -> ();
+    pub fn VTPixelTransferSessionInvalidate(session: VTPixelTransferSessionRef);
 
 }

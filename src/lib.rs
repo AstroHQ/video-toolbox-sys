@@ -1,22 +1,26 @@
-#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, improper_ctypes)]
+#![allow(
+    non_snake_case,
+    non_camel_case_types,
+    non_upper_case_globals,
+    improper_ctypes
+)]
 #![cfg(any(target_os = "macos", target_os = "ios"))]
 
-extern crate libc;
 extern crate core_foundation_sys;
 extern crate core_media_sys;
 extern crate core_video_sys;
+extern crate libc;
 
 // Document: https://developer.apple.com/documentation/videotoolbox?language=objc
 
-
 pub mod base;
-pub mod errors;
-pub mod session;
-pub mod decompression;
 pub mod compression;
-pub mod pixel_transfer;
-pub mod multi_pass_storage;
+pub mod decompression;
+pub mod errors;
 pub mod frame_silo;
+pub mod multi_pass_storage;
+pub mod pixel_transfer;
+pub mod session;
 pub mod utilities;
 
 // pub use self::base::*;
