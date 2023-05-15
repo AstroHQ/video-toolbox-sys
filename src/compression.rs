@@ -1,4 +1,4 @@
-use crate::libc::{c_void, c_int, int32_t, uint32_t};
+use crate::libc::{c_void, c_int};
 use crate::core_foundation_sys::base::{ OSStatus, CFTypeID, CFTypeRef, CFAllocatorRef, Boolean };
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::dictionary::CFDictionaryRef;
@@ -39,8 +39,8 @@ extern {
 
     // Creating Sessions
     pub fn VTCompressionSessionCreate(allocator: CFAllocatorRef,
-                                      width: int32_t,
-                                      height: int32_t,
+                                      width: i32,
+                                      height: i32,
                                       codecType: CMVideoCodecType,
                                       encoderSpecification: CFDictionaryRef,
                                       sourceImageBufferAttributes: CFDictionaryRef,
@@ -170,10 +170,10 @@ extern {
     // Performing Multipass Compression
     pub fn VTCompressionSessionBeginPass(session: VTCompressionSessionRef,
                                          beginPassFlags: VTCompressionSessionOptionFlags,
-                                         reserved: *mut uint32_t) -> OSStatus;
+                                         reserved: *mut u32) -> OSStatus;
     pub fn VTCompressionSessionEndPass(session: VTCompressionSessionRef,
                                        furtherPassesRequestedOut: *mut Boolean,
-                                       reserved: *mut uint32_t) -> OSStatus;
+                                       reserved: *mut u32) -> OSStatus;
     pub fn VTCompressionSessionGetTimeRangesForNextPass(session: VTCompressionSessionRef,
                                                         timeRangeCountOut: *mut CMItemCount,
                                                         timeRangeArrayOut: *const CMTimeRange) -> OSStatus;

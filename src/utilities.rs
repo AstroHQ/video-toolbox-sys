@@ -1,4 +1,3 @@
-use crate::libc::int32_t;
 use crate::core_foundation_sys::array::CFArrayRef;
 use crate::core_foundation_sys::string::CFStringRef;
 use crate::core_foundation_sys::base::{ CFTypeRef, OSStatus };
@@ -31,8 +30,8 @@ extern {
 
     pub fn VTCopyVideoEncoderList(options: CFDictionaryRef,
                                   listOfVideoEncodersOut: *mut CFArrayRef) -> OSStatus;
-    pub fn VTCopySupportedPropertyDictionaryForEncoder(width: int32_t,
-                                                       height: int32_t,
+    pub fn VTCopySupportedPropertyDictionaryForEncoder(width: i32,
+                                                       height: i32,
                                                        codecType: CMVideoCodecType,
                                                        encoderSpecification: CFDictionaryRef,
                                                        outEncoderID: *mut CFStringRef,
