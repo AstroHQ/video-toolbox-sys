@@ -6,11 +6,6 @@
 )]
 #![cfg(any(target_os = "macos", target_os = "ios"))]
 
-extern crate core_foundation_sys;
-extern crate core_media_sys;
-extern crate core_video_sys;
-extern crate libc;
-
 // Document: https://developer.apple.com/documentation/videotoolbox?language=objc
 
 pub mod base;

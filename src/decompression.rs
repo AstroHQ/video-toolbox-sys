@@ -1,11 +1,11 @@
-use crate::core_foundation_sys::base::{Boolean, CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
-use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_foundation_sys::string::CFStringRef;
-use crate::core_media_sys::{
+use core_foundation_sys::base::{Boolean, CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
+use core_foundation_sys::dictionary::CFDictionaryRef;
+use core_foundation_sys::string::CFStringRef;
+use core_media_sys::{
     CMFormatDescriptionRef, CMSampleBufferRef, CMTime, CMVideoFormatDescriptionRef,
 };
-use crate::core_video_sys::{CVImageBufferRef, CVPixelBufferRef};
-use crate::libc::c_void;
+use core_video_sys::{CVImageBufferRef, CVPixelBufferRef};
+use libc::c_void;
 
 pub type VTDecodeInfoFlags = u32;
 pub type VTDecodeFrameFlags = u32;

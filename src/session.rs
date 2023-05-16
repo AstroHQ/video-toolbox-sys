@@ -1,7 +1,7 @@
-use crate::core_foundation_sys::base::{CFAllocatorRef, CFTypeRef, OSStatus};
-use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_foundation_sys::string::CFStringRef;
-use crate::libc::c_void;
+use core_foundation_sys::base::{CFAllocatorRef, CFTypeRef, OSStatus};
+use core_foundation_sys::dictionary::CFDictionaryRef;
+use core_foundation_sys::string::CFStringRef;
+use libc::c_void;
 
 pub type VTSessionRef = CFTypeRef;
 pub type FrameDelay = i32;

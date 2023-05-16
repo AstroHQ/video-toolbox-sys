@@ -1,10 +1,9 @@
-use crate::core_foundation_sys::array::CFArrayRef;
-use crate::core_foundation_sys::base::{Boolean, CFTypeRef, OSStatus};
-use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_foundation_sys::string::CFStringRef;
-
-use crate::core_media_sys::CMVideoCodecType;
-use crate::core_video_sys::CVPixelBufferRef;
+use core_foundation_sys::array::CFArrayRef;
+use core_foundation_sys::base::{Boolean, CFTypeRef, OSStatus};
+use core_foundation_sys::dictionary::CFDictionaryRef;
+use core_foundation_sys::string::CFStringRef;
+use core_media_sys::CMVideoCodecType;
+use core_video_sys::CVPixelBufferRef;
 
 pub type CGImageRef = CFTypeRef;
 

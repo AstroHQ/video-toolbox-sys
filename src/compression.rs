@@ -1,11 +1,9 @@
-use crate::core_foundation_sys::base::{Boolean, CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
-use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_foundation_sys::string::CFStringRef;
-use crate::core_media_sys::{
-    CMItemCount, CMSampleBufferRef, CMTime, CMTimeRange, CMVideoCodecType,
-};
-use crate::core_video_sys::{CVImageBufferRef, CVPixelBufferPoolRef};
-use crate::libc::{c_int, c_void};
+use core_foundation_sys::base::{Boolean, CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
+use core_foundation_sys::dictionary::CFDictionaryRef;
+use core_foundation_sys::string::CFStringRef;
+use core_media_sys::{CMItemCount, CMSampleBufferRef, CMTime, CMTimeRange, CMVideoCodecType};
+use core_video_sys::{CVImageBufferRef, CVPixelBufferPoolRef};
+use libc::{c_int, c_void};
 
 pub const kVTUnlimitedFrameDelayCount: c_int = -1;
 

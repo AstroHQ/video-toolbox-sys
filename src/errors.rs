@@ -1,4 +1,4 @@
-use crate::core_foundation_sys::base::OSStatus;
+use core_foundation_sys::base::OSStatus;
 
 pub const kVTPropertyNotSupportedErr: OSStatus = -12900;
 pub const kVTPropertyReadOnlyErr: OSStatus = -12901;

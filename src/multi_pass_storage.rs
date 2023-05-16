@@ -1,8 +1,8 @@
-use crate::core_foundation_sys::base::{CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
-use crate::core_foundation_sys::dictionary::CFDictionaryRef;
-use crate::core_foundation_sys::string::CFStringRef;
-use crate::core_foundation_sys::url::CFURLRef;
-use crate::core_media_sys::CMTimeRange;
+use core_foundation_sys::base::{CFAllocatorRef, CFTypeID, CFTypeRef, OSStatus};
+use core_foundation_sys::dictionary::CFDictionaryRef;
+use core_foundation_sys::string::CFStringRef;
+use core_foundation_sys::url::CFURLRef;
+use core_media_sys::CMTimeRange;
 
 pub type VTMultiPassStorageRef = CFTypeRef;
 
