@@ -46,7 +46,7 @@ extern "C" {
         compressedDataAllocator: CFAllocatorRef,
         outputCallback: VTCompressionOutputCallback,
         outputCallbackRefCon: *mut c_void,
-        compressionSessionOut: VTCompressionSessionRef,
+        compressionSessionOut: *mut VTCompressionSessionRef,
     ) -> OSStatus;
     // Configuring Sessions
     pub static kVTCompressionPropertyKey_NumberOfPendingFrames: CFStringRef;
