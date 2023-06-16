@@ -1,3 +1,5 @@
+#![allow(non_upper_case_globals)]
+
 use core_foundation_sys::base::OSStatus;
 
 pub const kVTPropertyNotSupportedErr: OSStatus = -12900;
