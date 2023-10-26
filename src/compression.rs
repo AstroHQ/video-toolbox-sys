@@ -125,6 +125,7 @@ extern "C" {
     pub static kVTCompressionPropertyKey_BaseLayerFrameRate: CFStringRef;
     pub static kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder: CFStringRef;
     pub static kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder: CFStringRef;
+    pub static kVTVideoEncoderSpecification_EnableLowLatencyRateControl: CFStringRef;
     pub static kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder: CFStringRef;
     pub static kVTEncodeFrameOptionKey_ForceKeyFrame: CFStringRef;
     pub static kVTCompressionPropertyKey_CleanAperture: CFStringRef;

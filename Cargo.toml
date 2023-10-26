@@ -1,6 +1,6 @@
 [package]
 name = "video-toolbox-sys"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2018"
 authors = ["luozijun <luozijun.assistant@gmail.com>"]
 description = "Bindings to VideoToolBox for OS X and iOS"
