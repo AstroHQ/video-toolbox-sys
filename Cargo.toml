@@ -17,7 +17,7 @@ core-media-sys = "0.1.0"
 core-video-sys = "0.2.0"
 
 [dev-dependencies]
-core-foundation = "0.6"
+core-foundation = "0.9"
 
 [patch.crates-io]
 core-video-sys = { git = "https://github.com/AstroHQ/core-video-sys" }
